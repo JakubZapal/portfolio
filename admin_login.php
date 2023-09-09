@@ -7,7 +7,7 @@ if(isset($_POST['login'])) {
     if (mysqli_num_rows($q)>0) {
         $_SESSION['login'] = $_POST['login'];
         $_SESSION['password'] = $_POST['password'];
-        Header ('Location: admin_stuff.php');
+        echo "<script>window.location.replace('http://www.zapal.promienna.eu/portfolio/admin_stuff.php')</script>";
     }
     else
         echo 'złe dane';
@@ -18,15 +18,15 @@ if(isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Panel admina - logowanie</title>
 </head>
 <body>
     <form action="?" method="post">
         <p>
-            <input type="text" name="login">
+            <input type="text" name="login" placeholder="login">
         </p>
         <p>
-            <input type="password" name="password">
+            <input type="password" name="password" placeholder="hasło">
         </p>
         <input type="submit" name="submit">
     </form>
