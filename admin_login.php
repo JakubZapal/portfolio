@@ -10,7 +10,8 @@ if(isset($_POST['login'])) {
         Header ('Location: admin_stuff.php');
     }
     else
-        echo 'złe dane';}
+        echo 'złe dane';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
