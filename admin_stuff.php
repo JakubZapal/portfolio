@@ -1,7 +1,7 @@
 <?php
 session_start();
 $c = mysqli_connect("localhost", "zapal_portfolio", "FbWAxiw148MBOxG9b", "zapal_portfolio");
-$q = mysqli_query($c, "SELECT * FROM `admin` WHERE `login` = '$_POST[login]' AND `password` = '$_POST[password]';");
+$q = mysqli_query($c, "SELECT * FROM `admin` WHERE `login` = '$_SESSION[login]' AND `password` = '$_SESSION[password]';");
 if(!isset($_SESSION['login']) || mysqli_num_rows($q) == 0)
     header('location: admin_login.php');
 
