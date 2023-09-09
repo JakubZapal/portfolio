@@ -1,13 +1,10 @@
 <?php
 session_start();
 $c = mysqli_connect("localhost", "zapal_portfolio", "FbWAxiw148MBOxG9b", "zapal_portfolio");
-
-if(!isset($_SESSION['login']))
+$q = mysqli_query($c, "SELECT * FROM `admin` WHERE `login` = '$_POST[login]' AND `password` = '$_POST[password]';");
+if(!isset($_SESSION['login']) || mysqli_num_rows($q) == 0)
     header('location: admin_login.php');
-else {
-    $q = mysqli_query($c, "SELECT * FROM `admin` WHERE `login` = '$_POST[login]' AND `password` = '$_POST[password]';");
-    if (mysqli_num_rows($q));
-}
+
 if(isset($_POST['content'])) {
     mysqli_query($c, "UPDATE `about` SET `content` = '$_POST[content]';");
     mysqli_query($c, "INSERT INTO `projects` SET content = '$_POST[proj_content]', image_source = '$_POST[url]';");
