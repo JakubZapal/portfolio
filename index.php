@@ -1,12 +1,12 @@
 <?php
+session_start();
 $c = mysqli_connect("localhost", "zapal_portfolio", "FbWAxiw148MBOxG9b", "zapal_portfolio");
-
+$headers = "Content-Type: text/html; charset=UTF-8";
 if(isset($_POST['submit'])) {
-    $q = mysqli_query($c, "SELECT email FROM contact;");
+    $q = mysqli_query($c, "SELECT `email` FROM `contact`;");
     $row = mysqli_fetch_row($q);
-    mail("$row[0]", "Wiadomość od " . $_POST['email'], $_POST['content']);
+    mail($row[0], "Wiadomość od " . $_POST['email'], $_POST['content'], $headers);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -15,7 +15,8 @@ if(isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porflolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="shortcut icon" href="#" />
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -39,25 +40,26 @@ if(isset($_POST['submit'])) {
                     ?>
                     <li>
                         <?php echo $row[1];
-                        if (!is_null($row[2]))
-                            echo "<img src=\"<?= $row[2] ?>\">";
+                        if (strlen(($row[2]))>0)
+                            echo "<img src=\"$row[2]\">";
                         ?>
                     </li>
                     <?php
-                        } ?>
+                        } 
+                    ?>
                 </ul>
         </section>
         <section id="Kontakt">
             <h2>Kontakt</h2>
             <form action="?" method="post">
                 <p>
-                    <input type="email" id="email" placeholder="Twój e-mail">
+                    <input type="email" name="email" placeholder="Twój e-mail">
                 </p>
                 <p>
-                    <input type="text" placeholder="Treść" id="content">
+                    <textarea placeholder="Treść" name="content"></textarea>
                 </p>
                 <p>
-                    <input type="submit" id="submit">
+                    <input type="submit" name="submit">
                 </p>
             </form>
         </section>

@@ -19,11 +19,12 @@ if(isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel admina - logowanie</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <body>
     <form action="?" method="post">
         <p>
-            <input type="text" name="login" placeholder="login">
+            <input type="text" name="login" placeholder="login" autofocus>
         </p>
         <p>
             <input type="password" name="password" placeholder="hasło">
